@@ -9,6 +9,17 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float jumpForce;
     [SerializeField] private float gravityModifier = 9.8f;
 
+    private bool grounded = true;
+
+    [SerializeField] private float _speed;
+    public float speed
+    {
+        get
+        {
+            return _speed;
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,9 +30,18 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
+        if(Input.GetKeyDown(KeyCode.Space) && grounded)
         {
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            grounded = false;
+        }
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.CompareTag("Ground"))
+        {
+            grounded = true;
         }
     }
 }
