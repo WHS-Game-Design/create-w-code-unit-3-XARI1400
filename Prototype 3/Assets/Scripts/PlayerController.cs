@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
 
     private bool grounded = true;
 
+    public bool gameIsActive = true;
+
     [SerializeField] private float _speed;
     public float speed
     {
@@ -43,5 +45,7 @@ public class PlayerController : MonoBehaviour
         {
             grounded = true;
         }
+        else if(collision.gameObject.CompareTag("Obstacle"))
+        Debug.Log("you lost");
     }
 }
