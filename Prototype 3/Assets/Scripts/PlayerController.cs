@@ -13,6 +13,10 @@ public class PlayerController : MonoBehaviour
 
     public bool gameIsActive = true;
 
+    private Animator playerAnimator;
+
+    public bool gameOver;
+
     [SerializeField] private float _speed;
     public float speed
     {
@@ -26,6 +30,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        playerAnimator = GetComponent<Animator>();
         Physics.gravity *= gravityModifier;
     }
 
@@ -36,6 +41,7 @@ public class PlayerController : MonoBehaviour
         {
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             grounded = false;
+            playerAnimator.SetTrigger("Jump_trig");
         }
     }
 
@@ -46,6 +52,13 @@ public class PlayerController : MonoBehaviour
             grounded = true;
         }
         else if(collision.gameObject.CompareTag("Obstacle"))
-        Debug.Log("you lost");
+        {
+            gameIsActive = false;
+            Debug.Log("Game Over!");
+            gameOver = true;
+            playerAnimator.SetBool("Death_b", true);
+            playerAnimator.SetInteger("DeathType_int", 1);
+        }
+
     }
 }

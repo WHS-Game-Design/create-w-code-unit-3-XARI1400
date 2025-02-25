@@ -7,6 +7,10 @@ public class MoveLeft : MonoBehaviour
 {
     private PlayerController playerController;
 
+    [SerializeField] private float speed = 15f;
+
+    [SerializeField] private float leftBound = -15;
+
     void Start()
     {
         playerController = FindObjectOfType<PlayerController>();
@@ -14,6 +18,11 @@ public class MoveLeft : MonoBehaviour
 
     void Update()
     {
-        transform.Translate(playerController.speed * Time.deltaTime * Vector3.left);
+        if(!playerController.gameIsActive)
+        return;
+        transform.Translate(speed * Time.deltaTime * Vector3.left);
+
+        if(transform.position.x < leftBound && gameObject.CompareTag("Obstacle"))
+        Destroy(gameObject);
     }
 }

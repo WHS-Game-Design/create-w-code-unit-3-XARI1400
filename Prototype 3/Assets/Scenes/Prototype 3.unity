@@ -473,6 +473,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57fa985c830255f4e96937a4d9d7cea7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 15
+  leftBound: -15
 --- !u!114 &835818923
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -536,8 +538,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obstaclePrefab: {fileID: 1574251093279545299, guid: aa7a79e53bee7d64e9b1fb9894a773a5, type: 3}
-  startDelay: 3
-  spawnRate: 4
+  startDelay: 1
+  spawnRate: 1
 --- !u!4 &947884323
 Transform:
   m_ObjectHideFlags: 0
@@ -583,7 +585,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 122
   m_CollisionDetection: 0
 --- !u!65 &1216977097
 BoxCollider:
@@ -621,6 +623,7 @@ MonoBehaviour:
   jumpForce: 35
   gravityModifier: 9.8
   gameIsActive: 1
+  gameOver: 0
   _speed: 10
 --- !u!1 &2014335011
 GameObject:

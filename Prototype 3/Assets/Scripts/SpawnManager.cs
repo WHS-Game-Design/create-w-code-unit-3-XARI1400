@@ -10,9 +10,12 @@ public class SpawnManager : MonoBehaviour
 
     private Vector3 spawnPosition = new(30, 0, 0);
 
+
+    private PlayerController playerController;
     // Start is called before the first frame update
     void Start()
     {
+        playerController = FindObjectOfType<PlayerController>(); 
         InvokeRepeating(nameof(SpawnObstacle), startDelay, spawnRate);
     }
 
